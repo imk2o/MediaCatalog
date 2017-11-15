@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Capture-->
+        <scene sceneID="vdC-5I-laj">
+            <objects>
+                <viewController storyboardIdentifier="CaptureView" hidesBottomBarWhenPushed="YES" id="ye9-JP-Wew" customClass="CameraCaptureViewController" customModule="MediaCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TYY-GX-gvV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <glkView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30P-wn-uMe" customClass="CoreImageView" customModule="MediaCatalog" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </glkView>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1kr-ui-Qld">
+                                <rect key="frame" x="12" y="531" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="DB9-Jp-axQ"/>
+                                    <constraint firstAttribute="width" constant="80" id="Q70-fF-IH8"/>
+                                </constraints>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q61-4C-rKL">
+                                <rect key="frame" x="287" y="535" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Nbp-N2-BgW"/>
+                                    <constraint firstAttribute="width" constant="80" id="SWH-wN-VrV"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77g-NI-dRI">
+                                <rect key="frame" x="168.5" y="581" width="37" height="30"/>
+                                <state key="normal" title="Shot!"/>
+                                <connections>
+                                    <action selector="shotButtonDidTap:" destination="ye9-JP-Wew" eventType="touchUpInside" id="FYB-8O-dbI"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3Q-LA-WMe">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="8is-FC-2hX"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="30P-wn-uMe" secondAttribute="bottom" id="0Vj-Ze-XrH"/>
+                            <constraint firstItem="30P-wn-uMe" firstAttribute="trailing" secondItem="w2k-pl-N6z" secondAttribute="trailing" id="2UO-Oc-YNe"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="leading" secondItem="w2k-pl-N6z" secondAttribute="leading" id="ASO-xz-MqL"/>
+                            <constraint firstItem="30P-wn-uMe" firstAttribute="top" secondItem="TYY-GX-gvV" secondAttribute="top" id="FLh-oj-XCG"/>
+                            <constraint firstItem="w2k-pl-N6z" firstAttribute="trailing" secondItem="q61-4C-rKL" secondAttribute="trailing" constant="8" id="Iv8-3L-6Sr"/>
+                            <constraint firstItem="30P-wn-uMe" firstAttribute="leading" secondItem="w2k-pl-N6z" secondAttribute="leading" id="QSg-wk-Ydg"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="trailing" secondItem="w2k-pl-N6z" secondAttribute="trailing" id="S57-WQ-F82"/>
+                            <constraint firstItem="1kr-ui-Qld" firstAttribute="leading" secondItem="w2k-pl-N6z" secondAttribute="leading" constant="12" id="WGY-La-w8A"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="top" secondItem="1kr-ui-Qld" secondAttribute="bottom" constant="12" id="Y7R-kj-rUg"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="top" secondItem="q61-4C-rKL" secondAttribute="bottom" constant="8" id="dr1-51-PE6"/>
+                            <constraint firstItem="77g-NI-dRI" firstAttribute="centerX" secondItem="TYY-GX-gvV" secondAttribute="centerX" id="jqZ-2h-HWJ"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="top" secondItem="77g-NI-dRI" secondAttribute="bottom" constant="12" id="me3-Fh-0OY"/>
+                            <constraint firstItem="z3Q-LA-WMe" firstAttribute="bottom" secondItem="w2k-pl-N6z" secondAttribute="bottom" id="rAg-ED-fMw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="w2k-pl-N6z"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Capture" id="22a-gE-LVg"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="capturedImageView" destination="1kr-ui-Qld" id="Z0I-zM-p2F"/>
+                        <outlet property="depthImageView" destination="q61-4C-rKL" id="r2w-Vf-TLZ"/>
+                        <outlet property="previewView" destination="30P-wn-uMe" id="YQt-DO-gHG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4v2-lu-95f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119.2" y="210.94452773613196"/>
+        </scene>
+    </scenes>
+</document>

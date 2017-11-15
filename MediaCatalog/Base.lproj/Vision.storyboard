@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Vision(Face)-->
+        <scene sceneID="oUZ-Vt-UT1">
+            <objects>
+                <viewController id="2df-1g-kqD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NxQ-Sd-ZJG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <glkView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ln0-3l-8dd" customClass="CoreImageView" customModule="MediaCatalog" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </glkView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ln0-3l-8dd" firstAttribute="trailing" secondItem="C4B-vA-g7d" secondAttribute="trailing" id="R7C-7r-1dY"/>
+                            <constraint firstItem="Ln0-3l-8dd" firstAttribute="leading" secondItem="C4B-vA-g7d" secondAttribute="leading" id="ZdX-SU-9Nx"/>
+                            <constraint firstItem="Ln0-3l-8dd" firstAttribute="bottom" secondItem="C4B-vA-g7d" secondAttribute="bottom" id="geD-0B-anN"/>
+                            <constraint firstItem="Ln0-3l-8dd" firstAttribute="top" secondItem="NxQ-Sd-ZJG" secondAttribute="top" id="n1q-Q0-M2N"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C4B-vA-g7d"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Vision(Face)" id="ZGR-tD-nYU"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O8w-dW-Lj6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="167" y="-182"/>
+        </scene>
+    </scenes>
+</document>
