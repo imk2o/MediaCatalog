@@ -28,9 +28,8 @@ extension PHPhotoLibrary {
                 to as NSDate
             )
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-//            options.fetchLimit = 1
             let fetchResult = PHAsset.fetchAssets(with: .image, options: options)
-            print(fetchResult.count)
+            //print(fetchResult.count)
             return fetchResult.firstObject
         }
         
