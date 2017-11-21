@@ -66,7 +66,7 @@ class DeviceOrientationMonitor {
             }
             
             let orientation = UIDevice.current.orientation
-            print("do = \(orientation), co =\(self.orientation)")
+//            print("do = \(orientation), co =\(self.orientation)")
         } else {
             self.orientation = .unknown
         }

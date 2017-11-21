@@ -15,6 +15,9 @@ class CameraCaptureViewController: UIViewController {
     @IBOutlet weak var previewView: CoreImageView!
     @IBOutlet weak var capturedImageView: UIImageView!
     @IBOutlet weak var depthImageView: UIImageView!
+    @IBOutlet weak var finalImageView: UIImageView!
+    @IBOutlet weak var minSlider: UISlider!
+    @IBOutlet weak var maxSlider: UISlider!
     
     fileprivate let captureSession = AVCaptureSession()
     fileprivate let photoOutput = AVCapturePhotoOutput()
@@ -22,6 +25,10 @@ class CameraCaptureViewController: UIViewController {
 
     private var deviceOrientationMonitor: DeviceOrientationMonitor?
 
+    fileprivate var ciPhotoImage: CIImage?
+    fileprivate var ciBackgroundImage: CIImage?
+    fileprivate var ciDepthDisparityImage: CIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,8 +72,27 @@ class CameraCaptureViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showFinalImage"?:
+            let previewImageViewController = segue.destination as! PreviewImageViewController
+            
+            previewImageViewController.image = self.finalImageView.image
+        default:
+            break
+        }
+    }
+    
     @IBAction func shotButtonDidTap(_ sender: Any) {
         self.shot()
+    }
+    
+    @IBAction func minSliderDidChange(_ sender: UISlider) {
+        self.updateFilteredImageView()
+    }
+    
+    @IBAction func maxSliderDidChange(_ sender: UISlider) {
+        self.updateFilteredImageView()
     }
 }
 
@@ -91,12 +117,25 @@ fileprivate extension CameraCaptureViewController {
 //    }
     
     func setCameraFace(_ position: AVCaptureDevice.Position) -> Bool {
+        func findVideoDevice(_ devices: [AVCaptureDevice.DeviceType]) -> AVCaptureDevice? {
+            for device in devices {
+                if let captureDevice = AVCaptureDevice.default(device, for: .video, position: position) {
+                    return captureDevice
+                }
+            }
+            
+            return nil
+        }
+        
         // position に対するカメラを探す
+        var devices: [AVCaptureDevice.DeviceType] = []
+        if #available(iOS 11.1, *) {
+            devices += [.builtInTrueDepthCamera]
+        }
+        devices += [.builtInDualCamera, .builtInWideAngleCamera]
+        
         guard
-            let videoDevice = (
-                AVCaptureDevice.default(.builtInDualCamera, for: .video, position: position) ??
-                AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
-            ),
+            let videoDevice = findVideoDevice(devices),
             let videoInput = try? AVCaptureDeviceInput(device: videoDevice)
         else {
             return false
@@ -172,18 +211,106 @@ fileprivate extension CameraCaptureViewController {
         }
     }
     
-    func updateDepthImageView(with photo: AVCapturePhoto) {
-        guard let depthDataMap = photo.depthData?.depthDataMap else {
-            self.depthImageView.image = nil
+    func updateCapturedImageView(with photo: AVCapturePhoto) {
+        let cgPhotoImage = photo.cgImageRepresentation()?.takeUnretainedValue()
+        let ciDepthDisparityImage: CIImage? = (photo.depthData?.depthDataMap).map {
+            let ciDepthSourceImage = CIImage(cvPixelBuffer: $0)
+            return ciDepthSourceImage.applyingFilter("CIDepthToDisparity")
+        }
+
+        // プレビュー
+        self.capturedImageView.image = cgPhotoImage.map { UIImage(cgImage: $0) }
+        self.depthImageView.image = ciDepthDisparityImage.flatMap {
+            guard let cgDepthImage = CIContext().createCGImage($0, from: $0.extent) else {
+                return nil
+            }
+            
+            return UIImage(cgImage: cgDepthImage)
+        }
+        
+        self.ciPhotoImage = cgPhotoImage.map { CIImage(cgImage: $0) }
+        self.ciDepthDisparityImage = ciDepthDisparityImage
+        self.ciBackgroundImage = UIImage(named: "mm").map { CIImage(cgImage: $0.cgImage!) }
+    }
+    
+    func updateFilteredImageView() {
+        guard
+            let ciPhotoImage = self.ciPhotoImage,
+            let ciDepthDisparityImage = self.ciDepthDisparityImage,
+            let ciBackgroundImage = self.ciBackgroundImage
+        else {
             return
         }
         
-        let ciImage = CIImage(cvImageBuffer: depthDataMap)
-        guard let cgImage = ciImage.cgImage else {
-            return
-        }
+        // Composite
+        // 背景を写真の解像度に合わせる
+        let scale = ciBackgroundImage.extent.size.scaleForAspectFill(targetSize: ciPhotoImage.extent.size)
+        let bgTransform = CGAffineTransform(scaleX: scale, y: scale)
+        let ciScaledBackgroundImage = ciBackgroundImage.transformed(by: bgTransform)
         
-        self.depthImageView.image = UIImage(cgImage: cgImage)
+        // Depthを写真の解像度に合わせる
+        let transform = CGAffineTransform(
+            scaleX: ciPhotoImage.extent.width / ciDepthDisparityImage.extent.width,
+            y: ciPhotoImage.extent.height / ciDepthDisparityImage.extent.height
+        )
+        let ciNormalizedDepthDisparityImage = ciDepthDisparityImage.transformed(by: transform)
+            
+//            let filter = CIFilter(
+//                name: "CIDepthBlurEffect",
+//                withInputParameters: [
+//                    kCIInputImageKey: ciPhotoImage,
+//                    kCIInputDisparityImageKey: ciNormalizedDepthDisparityImage
+//                ])!
+//            let filter = CIFilter(
+//                name: "CIAdditionCompositing",
+//                withInputParameters: [
+//                    kCIInputImageKey: ciPhotoImage,
+//                    kCIInputBackgroundImageKey: ciNormalizedDepthDisparityImage
+//                ])!
+//            let ciFilteredImage = filter.outputImage
+
+        var (minValue, maxValue) = ciDepthDisparityImage.minMaxFromDisparity()
+        print("min = \(minValue), max = \(maxValue)")
+        
+        let sliderMinValue = CGFloat(self.minSlider.value)
+        let sliderMaxValue = CGFloat(self.maxSlider.value)
+        minValue = sliderMinValue * (maxValue - minValue) + minValue
+        maxValue = sliderMaxValue * (maxValue - minValue) + minValue
+        
+        let slope = 1 / (maxValue - minValue)
+        let bias = -(minValue / (maxValue - minValue))
+        
+        var ciAlphaMaskImage = ciNormalizedDepthDisparityImage.applyingFilter(
+            "CIColorMatrix",
+            parameters: [
+//                    "inputRVector": CIVector(x: -slope, y: 0, z: 0, w: 0),
+//                    "inputBiasVector": CIVector(x: 1 - bias, y: 0, z: 0, w: 0)
+//                    "inputRVector": CIVector(x: 0, y: 0, z: 0, w: 0),
+//                    "inputGVector": CIVector(x: 0, y: 0, z: 0, w: 0),
+//                    "inputBVector": CIVector(x: 0, y: 0, z: 0, w: 0),
+                "inputAVector": CIVector(x: -slope, y: 0, z: 0, w: 0),
+                "inputBiasVector": CIVector(x: 0, y: 0, z: 0, w: 1 - bias)
+            ]
+        )
+            
+        ciAlphaMaskImage = ciAlphaMaskImage.applyingFilter("CIColorClamp")
+        
+        let ciFilteredImage = ciPhotoImage.applyingFilter(
+            "CIBlendWithAlphaMask",
+            parameters: [
+                kCIInputBackgroundImageKey: ciScaledBackgroundImage,
+                kCIInputMaskImageKey: ciAlphaMaskImage
+            ]
+        )
+        
+        let ciResultImage = ciFilteredImage.rotated90CCW()
+//            let ciResultImage = ciAlphaMaskImage.rotated90CCW()
+        
+        if
+            let cgResultImage = CIContext().createCGImage(ciResultImage, from: ciResultImage.extent)
+        {
+            self.finalImageView.image = UIImage(cgImage: cgResultImage)
+        }
     }
 }
 
@@ -249,6 +376,11 @@ private extension CameraCaptureViewController {
             
             // Capture a JPEG photo with flash set to auto and high resolution photo enabled.
             let photoSettings = AVCapturePhotoSettings()
+//            let types = self.photoOutput.availableRawPhotoPixelFormatTypes
+//            guard let rawFormat = self.photoOutput.availableRawPhotoPixelFormatTypes.first else {
+//                fatalError()
+//            }
+//            let photoSettings = AVCapturePhotoSettings(rawPixelFormatType: OSType(rawFormat))
             photoSettings.flashMode = .auto
             photoSettings.isHighResolutionPhotoEnabled = true
             if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {		// FIXME: Workaround for Xcode9
@@ -311,12 +443,13 @@ private extension CameraCaptureViewController {
                 }
                 .didCapturePhoto { (photo, livePhotoMovieURL) -> Bool in
                     DispatchQueue.main.async {
-                        self.updateDepthImageView(with: photo)
+                        self.updateCapturedImageView(with: photo)
+                        self.updateFilteredImageView()
                     }
                     return false
                 }
                 .didFinishSaveToPhotoLibrary { [unowned self] (asset) in
-                    self.updateCapturedImageView(with: asset)
+//                    self.updateCapturedImageView(with: asset)
                 }
                 .error { (error) in
                     print(error)

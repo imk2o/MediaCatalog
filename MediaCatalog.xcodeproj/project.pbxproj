@@ -12,6 +12,8 @@
 		B169B6491F7B457D008256B0 /* PHAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */; };
 		B169B64C1F7B4913008256B0 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */; };
 		B1836DC91FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */; };
+		B1836DCD1FBD556900AE4DF6 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */; };
+		B1836DCF1FBD733B00AE4DF6 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */; };
 		B19414101FB2E95300DA6078 /* Vision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B194140E1FB2E95300DA6078 /* Vision.storyboard */; };
 		B19414131FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19414121FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift */; };
 		B1B79B391F79CE3700E9CE37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B79B381F79CE3700E9CE37 /* AppDelegate.swift */; };
@@ -29,6 +31,8 @@
 		B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PHAsset+Extension.swift"; path = "Camera/PHAsset+Extension.swift"; sourceTree = "<group>"; };
 		B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGSize+Extension.swift"; path = "Extensions/CGSize+Extension.swift"; sourceTree = "<group>"; };
 		B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceOrientationMonitor.swift; path = Camera/DeviceOrientationMonitor.swift; sourceTree = "<group>"; };
+		B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = Camera/PreviewImageViewController.swift; sourceTree = "<group>"; };
+		B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CIImage+Extension.swift"; path = "Extensions/CIImage+Extension.swift"; sourceTree = "<group>"; };
 		B194140F1FB2E95300DA6078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Vision.storyboard; sourceTree = "<group>"; };
 		B19414121FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VisionFaceFeatureViewController.swift; path = Vision/VisionFaceFeatureViewController.swift; sourceTree = "<group>"; };
 		B1B79B351F79CE3700E9CE37 /* MediaCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */,
+				B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 				B169B6461F7B4101008256B0 /* PHPhotoLibrary+Extension.swift */,
 				B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */,
 				B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */,
+				B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -189,10 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1836DCF1FBD733B00AE4DF6 /* CIImage+Extension.swift in Sources */,
 				B169B6491F7B457D008256B0 /* PHAsset+Extension.swift in Sources */,
 				B1B79B551F79D48E00E9CE37 /* CameraCaptureViewController.swift in Sources */,
 				B1836DC91FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift in Sources */,
 				B19414131FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift in Sources */,
+				B1836DCD1FBD556900AE4DF6 /* PreviewImageViewController.swift in Sources */,
 				B1B79B531F79D46700E9CE37 /* CoreImageView.swift in Sources */,
 				B169B6431F7A3845008256B0 /* PhotoCaptureSession.swift in Sources */,
 				B169B64C1F7B4913008256B0 /* CGSize+Extension.swift in Sources */,
