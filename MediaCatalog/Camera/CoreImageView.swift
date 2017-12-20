@@ -10,10 +10,13 @@ import UIKit
 import GLKit
 import AVFoundation
 
+/// CIImageを表示するImage View。
 class CoreImageView: GLKView {
     var image: CIImage? {
         didSet {
-            self.display()
+            DispatchQueue.main.async {
+                self.display()
+            }
         }
     }
     
@@ -28,8 +31,8 @@ class CoreImageView: GLKView {
         guard
             let image = self.image,
             let ciContext = self.ciContext
-            else {
-                return
+        else {
+            return
         }
         
         let scale = self.window?.screen.scale ?? 1.0

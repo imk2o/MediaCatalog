@@ -9,6 +9,8 @@
 import UIKit
 import CoreMotion
 
+/// 端末の傾きを監視する。
+/// 回転ロックしている場合UIDevice#orientationがアテにならないため、加速度センサを参照して独自に取得する。
 class DeviceOrientationMonitor {
     fileprivate(set) var orientation: UIDeviceOrientation = .unknown
     
@@ -47,7 +49,8 @@ class DeviceOrientationMonitor {
     private func updateOrientation(by data: CMAccelerometerData?) {
         if let data = data {
             //print("\(data.acceleration)")
-            
+
+            // FIXME: 簡素は判別方法のため、UIDevice#orientationとは微妙に結果が異なる...
             let absAccelerationX = abs(data.acceleration.x)
             let absAccelerationY = abs(data.acceleration.y)
             let absAccelerationZ = abs(data.acceleration.z)
@@ -64,9 +67,6 @@ class DeviceOrientationMonitor {
             } else {
                 self.orientation = .unknown
             }
-            
-            let orientation = UIDevice.current.orientation
-//            print("do = \(orientation), co =\(self.orientation)")
         } else {
             self.orientation = .unknown
         }

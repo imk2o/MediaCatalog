@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B12DC5D41FE8977B0071C1F8 /* UIViewController+ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5D31FE8977B0071C1F8 /* UIViewController+ActionSheet.swift */; };
+		B12DC5D61FE89DFE0071C1F8 /* PreviewPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5D51FE89DFE0071C1F8 /* PreviewPhotoViewController.swift */; };
+		B12DC5D81FE8B57D0071C1F8 /* ImageCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5D71FE8B57D0071C1F8 /* ImageCompositor.swift */; };
+		B12DC5DA1FEA1DEF0071C1F8 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5D91FEA1DEF0071C1F8 /* UIViewController+Alert.swift */; };
+		B12DC5DD1FEA3F250071C1F8 /* PHPhotoLibrary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5DB1FEA3F240071C1F8 /* PHPhotoLibrary+Extension.swift */; };
+		B12DC5DE1FEA3F250071C1F8 /* PHAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12DC5DC1FEA3F240071C1F8 /* PHAsset+Extension.swift */; };
 		B169B6431F7A3845008256B0 /* PhotoCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B6421F7A3845008256B0 /* PhotoCaptureSession.swift */; };
-		B169B6471F7B4101008256B0 /* PHPhotoLibrary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B6461F7B4101008256B0 /* PHPhotoLibrary+Extension.swift */; };
-		B169B6491F7B457D008256B0 /* PHAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */; };
 		B169B64C1F7B4913008256B0 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */; };
 		B1836DC91FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */; };
-		B1836DCD1FBD556900AE4DF6 /* PreviewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */; };
 		B1836DCF1FBD733B00AE4DF6 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */; };
 		B19414101FB2E95300DA6078 /* Vision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B194140E1FB2E95300DA6078 /* Vision.storyboard */; };
 		B19414131FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19414121FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift */; };
@@ -26,12 +29,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B12DC5D31FE8977B0071C1F8 /* UIViewController+ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+ActionSheet.swift"; path = "Extensions/UIViewController+ActionSheet.swift"; sourceTree = "<group>"; };
+		B12DC5D51FE89DFE0071C1F8 /* PreviewPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewPhotoViewController.swift; path = Camera/PreviewPhotoViewController.swift; sourceTree = "<group>"; };
+		B12DC5D71FE8B57D0071C1F8 /* ImageCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCompositor.swift; path = Camera/ImageCompositor.swift; sourceTree = "<group>"; };
+		B12DC5D91FEA1DEF0071C1F8 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Alert.swift"; path = "Extensions/UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		B12DC5DB1FEA3F240071C1F8 /* PHPhotoLibrary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PHPhotoLibrary+Extension.swift"; path = "Extensions/PHPhotoLibrary+Extension.swift"; sourceTree = "<group>"; };
+		B12DC5DC1FEA3F240071C1F8 /* PHAsset+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PHAsset+Extension.swift"; path = "Extensions/PHAsset+Extension.swift"; sourceTree = "<group>"; };
 		B169B6421F7A3845008256B0 /* PhotoCaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCaptureSession.swift; path = Camera/PhotoCaptureSession.swift; sourceTree = "<group>"; };
-		B169B6461F7B4101008256B0 /* PHPhotoLibrary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PHPhotoLibrary+Extension.swift"; path = "Camera/PHPhotoLibrary+Extension.swift"; sourceTree = "<group>"; };
-		B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "PHAsset+Extension.swift"; path = "Camera/PHAsset+Extension.swift"; sourceTree = "<group>"; };
 		B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGSize+Extension.swift"; path = "Extensions/CGSize+Extension.swift"; sourceTree = "<group>"; };
 		B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceOrientationMonitor.swift; path = Camera/DeviceOrientationMonitor.swift; sourceTree = "<group>"; };
-		B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewImageViewController.swift; path = Camera/PreviewImageViewController.swift; sourceTree = "<group>"; };
 		B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CIImage+Extension.swift"; path = "Extensions/CIImage+Extension.swift"; sourceTree = "<group>"; };
 		B194140F1FB2E95300DA6078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Vision.storyboard; sourceTree = "<group>"; };
 		B19414121FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VisionFaceFeatureViewController.swift; path = Vision/VisionFaceFeatureViewController.swift; sourceTree = "<group>"; };
@@ -60,8 +66,12 @@
 		B169B64A1F7B48CF008256B0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B12DC5DC1FEA3F240071C1F8 /* PHAsset+Extension.swift */,
+				B12DC5DB1FEA3F240071C1F8 /* PHPhotoLibrary+Extension.swift */,
 				B169B64B1F7B4913008256B0 /* CGSize+Extension.swift */,
 				B1836DCE1FBD733B00AE4DF6 /* CIImage+Extension.swift */,
+				B12DC5D31FE8977B0071C1F8 /* UIViewController+ActionSheet.swift */,
+				B12DC5D91FEA1DEF0071C1F8 /* UIViewController+Alert.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -113,10 +123,9 @@
 				B1B79B541F79D48E00E9CE37 /* CameraCaptureViewController.swift */,
 				B1B79B521F79D46700E9CE37 /* CoreImageView.swift */,
 				B169B6421F7A3845008256B0 /* PhotoCaptureSession.swift */,
-				B169B6461F7B4101008256B0 /* PHPhotoLibrary+Extension.swift */,
-				B169B6481F7B457D008256B0 /* PHAsset+Extension.swift */,
 				B1836DC81FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift */,
-				B1836DCC1FBD556900AE4DF6 /* PreviewImageViewController.swift */,
+				B12DC5D51FE89DFE0071C1F8 /* PreviewPhotoViewController.swift */,
+				B12DC5D71FE8B57D0071C1F8 /* ImageCompositor.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -195,16 +204,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12DC5DA1FEA1DEF0071C1F8 /* UIViewController+Alert.swift in Sources */,
+				B12DC5D41FE8977B0071C1F8 /* UIViewController+ActionSheet.swift in Sources */,
 				B1836DCF1FBD733B00AE4DF6 /* CIImage+Extension.swift in Sources */,
-				B169B6491F7B457D008256B0 /* PHAsset+Extension.swift in Sources */,
 				B1B79B551F79D48E00E9CE37 /* CameraCaptureViewController.swift in Sources */,
 				B1836DC91FBBE1E600AE4DF6 /* DeviceOrientationMonitor.swift in Sources */,
 				B19414131FB2EA5500DA6078 /* VisionFaceFeatureViewController.swift in Sources */,
-				B1836DCD1FBD556900AE4DF6 /* PreviewImageViewController.swift in Sources */,
+				B12DC5DD1FEA3F250071C1F8 /* PHPhotoLibrary+Extension.swift in Sources */,
 				B1B79B531F79D46700E9CE37 /* CoreImageView.swift in Sources */,
+				B12DC5D61FE89DFE0071C1F8 /* PreviewPhotoViewController.swift in Sources */,
 				B169B6431F7A3845008256B0 /* PhotoCaptureSession.swift in Sources */,
+				B12DC5DE1FEA3F250071C1F8 /* PHAsset+Extension.swift in Sources */,
+				B12DC5D81FE8B57D0071C1F8 /* ImageCompositor.swift in Sources */,
 				B169B64C1F7B4913008256B0 /* CGSize+Extension.swift in Sources */,
-				B169B6471F7B4101008256B0 /* PHPhotoLibrary+Extension.swift in Sources */,
 				B1B79B391F79CE3700E9CE37 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
